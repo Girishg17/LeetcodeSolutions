@@ -14,7 +14,7 @@ class Solution{
         // Your code goes here 
         if(x==0)return 0;
         if(x==1)return 1;
-        long long int high=x;
+        long long int high=x/2;
         long long int start=1;
         while(start<=high){
             long long int mid=start+(high-start)/2;
