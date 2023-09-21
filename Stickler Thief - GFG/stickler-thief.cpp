@@ -11,10 +11,10 @@ class Solution
     int FindMaxSum(int arr[], int n)
     {
         // Your code here
-        arr[1]=max(arr[0],arr[1]);
+        if(n==1)return arr[0];
+        arr[1]=max(arr[1],arr[0]);
         for(int i=2;i<n;i++){
             arr[i]=max(arr[i-1],arr[i]+arr[i-2]);
-            
         }
         return arr[n-1];
     }
