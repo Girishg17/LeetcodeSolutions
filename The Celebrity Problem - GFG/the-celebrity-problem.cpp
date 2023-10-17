@@ -15,20 +15,45 @@ class Solution
     {
         // code here 
        
-        for(int i=0;i<n;i++){
-            bool isceleb=true;
-            for(int j=0 ;j<n;j++){
-                if(i!=j && M[i][j]==1)isceleb=false;
-            }
-            if(isceleb){
+        // for(int i=0;i<n;i++){
+        //     bool isceleb=true;
+        //     for(int j=0 ;j<n;j++){
+        //         if(i!=j && M[i][j]==1)isceleb=false;
+        //     }
+        //     if(isceleb){
                 
-                for(int j=0;j<n;j++){
-                    if(i!=j && M[j][i]==0)isceleb=false;
-                }
-                if(isceleb)return i;
+        //         for(int j=0;j<n;j++){
+        //             if(i!=j && M[j][i]==0)isceleb=false;
+        //         }
+        //         if(isceleb)return i;
+        //     }
+        // }
+        stack<int>st;
+        for(int i=0;i<n;i++){
+            st.push(i);
+        }
+        
+        
+        while(st.size()>1){
+            int a=st.top();
+            st.pop();
+            int b=st.top();
+            st.pop();
+            if(M[a][b]==1){
+                st.push(b);
+            }
+            else{
+                st.push(a);
             }
         }
-        return -1;
+        int prob=st.top();
+        for(int i=0;i<n;i++){
+            if(M[prob][i]==1)return -1;
+        }
+        for(int i=0;i<n;i++){
+            if(i!=prob && M[i][prob]==0)return -1;
+        }
+        return prob;
     }
 };
 
