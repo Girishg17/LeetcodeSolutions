@@ -21,11 +21,13 @@
  */
 class Solution {
 public:
-   void find(vector<TreeNode*>&arr,TreeNode* root,int val){
-       if(root==NULL)return;
-       if(root->val==val)arr.push_back(root);
-       find(arr,root->left,val);
-       find(arr,root->right,val);
+   bool find(ListNode * head,TreeNode * root){
+       if(root==NULL)return false;
+       if(root->val==head->val){
+          if( solve(root,head))return true;
+       }
+     return  find(head,root->left)
+        || find(head,root->right);
 
    }
    bool solve(TreeNode * root,ListNode * head){
@@ -40,13 +42,7 @@ public:
        return false;
    }
     bool isSubPath(ListNode* head, TreeNode* root) {
-        vector<TreeNode*>arr;
-        find(arr,root,head->val);
-        for(int i=0;i<arr.size();i++){
-            ListNode* temp=head;
-            if(solve(arr[i],temp))return true;
-        }
-        return false;
+        return find(head,root);
         
     }
 };
