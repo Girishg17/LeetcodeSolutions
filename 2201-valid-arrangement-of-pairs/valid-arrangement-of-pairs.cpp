@@ -1,12 +1,9 @@
-using namespace std;
-
 struct Node {
-    int arr[1][2]; // Single pair of [start, end]
+    int arr[1][2]; 
     Node* left;
     Node* right;
 };
 
-// Function to create a new node
 Node* createNode(int first, int second) {
     Node* newNode = new Node();
     newNode->arr[0][0] = first;
@@ -18,21 +15,20 @@ Node* createNode(int first, int second) {
 
 class Solution {
 public:
-    // Insert a new pair into the tree
     void insert(int first, int second, Node*& root) {
         if (root == nullptr) {
             root = createNode(first, second);
             return;
         }
 
-        if (first < root->arr[0][0]) { // Insert into the left subtree
+        if (first < root->arr[0][0]) { 
             insert(first, second, root->left);
-        } else { // Insert into the right subtree
+        } else { 
             insert(first, second, root->right);
         }
     }
 
-    // In-order traversal to collect the pairs in sorted order
+ 
     void inOrderTraversal(Node* root, vector<vector<int>>& result) {
         if (root == nullptr) return;
         inOrderTraversal(root->left, result);
@@ -41,7 +37,7 @@ public:
     }
 
     vector<vector<int>> validArrangement(vector<vector<int>>& pairs) {
-        // Build the adjacency list
+
         unordered_map<int, vector<int>> graph;
         unordered_map<int, int> outDegree, inDegree;
 
@@ -51,8 +47,8 @@ public:
             inDegree[pair[1]]++;
         }
 
-        // Find the start node for Eulerian Path
-        int startNode = pairs[0][0]; // Default start node
+  
+        int startNode = pairs[0][0]; 
         for (const auto& [node, degree] : outDegree) {
             if (outDegree[node] > inDegree[node]) {
                 startNode = node;
@@ -60,7 +56,6 @@ public:
             }
         }
 
-        // Use Hierholzer's Algorithm to find Eulerian Path
         vector<vector<int>> result;
         stack<int> stk;
         stk.push(startNode);
@@ -79,7 +74,7 @@ public:
             }
         }
 
-        // Reverse the result to get the correct order
+        
         reverse(result.begin(), result.end());
         return result;
     }
