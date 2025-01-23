@@ -15,7 +15,7 @@ public:
             int diff=INT_MAX;
             int swapnum=breakpoint;
             for(int i=breakpoint+1;i<nums.size();i++){
-                if(nums[i]>nums[breakpoint] && diff>nums[i]-nums[breakpoint]){
+                if(nums[i]>nums[breakpoint]){
                     swapnum=i;
                 }
             }
