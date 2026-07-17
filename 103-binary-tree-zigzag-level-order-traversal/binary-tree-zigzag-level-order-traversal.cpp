@@ -37,12 +37,7 @@ public:
                 i++;
             }
             ans.push_back(tempAns);
-            if(goRight){
-                goRight=false;
-            }
-            else{
-                goRight=true;
-            }
+            goRight=!goRight;
 
         }
         return ans;
